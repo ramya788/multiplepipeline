@@ -1,4 +1,4 @@
-node('Dev') 
+node('Dev')
 {
     stage('continuousdownloading')
     {
@@ -20,5 +20,6 @@ node('Dev')
       stage('continuousDelivery')
      {
        sh 'scp /home/ubuntu/.jenkins/workspace/master1/webapp/target/webapp.war ubuntu@172.31.94.136:/var/lib/tomcat8/webapps/testing.war'
-     }
+       }
 }
+
