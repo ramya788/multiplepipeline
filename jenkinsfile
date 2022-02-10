@@ -1,24 +1,24 @@
 node('Dev') 
 {
-    stage('continuousdownloading_master')
+    stage('continuousdownloading_pb')
     {
       git 'https://github.com/ramya788/maven.git'
     }
-    stage('continuousBuild_master')
+    stage('continuousBuild_pb')
     {
       sh 'mvn package'
     }
-     stage('continuousDeployment_master')
+     stage('continuousDeployment_pb')
      {
-       sh 'scp /home/ubuntu/.jenkins/workspace/multiplepipeline_master/webapp/target/webapp.war ubuntu@172.31.84.40:/var/lib/tomcat8/webapps/testing.war'
+       sh 'scp /home/ubuntu/.jenkins/workspace/multiplepipeline_pb/webapp/target/webapp.war ubuntu@172.31.84.40:/var/lib/tomcat8/webapps/testing.war'
      }
-      stage('continuousTesting_master')
+      stage('continuousTesting_pb')
       {
         git 'https://github.com/ramya788/functinaltest.git'
         sh 'java -jar /home/ubuntu/.jenkins/workspace/master1@2/testing.jar'
       }
-      stage('continuousDelivery_master')
+      stage('continuousDelivery_pb')
      {
-       sh 'scp /home/ubuntu/.jenkins/workspace/multiplepipeline_master/webapp/target/webapp.war ubuntu@172.31.94.136:/var/lib/tomcat8/webapps/testing.war'
+       sh 'scp /home/ubuntu/.jenkins/workspace/multiplepipeline_pb/webapp/target/webapp.war ubuntu@172.31.94.136:/var/lib/tomcat8/webapps/testing.war'
      }     
 }
